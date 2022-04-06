@@ -38,12 +38,12 @@ public class FXMLController {
     @FXML
     void handleNuovoVoto(ActionEvent event) {      //quando premo il bottone dovrei chiamare il metodo add della classe Libretto (il Model di questa applicazione)
     	
-    	//1. acquisizione e controllo dati
+    	//1. acquisizione dei dati
     	String nome = txtNome.getText();
     	Integer punti = cmbPunti.getValue();
     	
-    	//controlli di validità
-    	if(nome.equals("") || punti==null) {
+    	//controlli di validità dei dati
+    	if(nome.equals("") || punti==null) { //punti=null lo posso mettere solo perchè punti è un integer
     		//errore, non posso eseguire l'operazione
     		txtStatus.setText("ERRORE: occorre inserire nome e voto\n");
     		return;
@@ -58,6 +58,7 @@ public class FXMLController {
     	//txtVoti.setText(contenutoLibretto);
     	if (ok) {
     		List<Voto> voti = model.getVoti();
+    		txtVoti.clear();
     		txtVoti.appendText("Hai superato " +voti.size()+ " esami\n");
     		for(Voto v: voti) {
     			txtVoti.appendText(v.toString()+"\n");
@@ -66,7 +67,7 @@ public class FXMLController {
     	
     	txtNome.clear();
     	cmbPunti.setValue(null);
-    	txtStatus.setText("");
+    	txtStatus.setText(""); //essendo una label non avrà il metodo clear
     	
     	}else {
     		txtStatus.setText("ERRORE: esame già presente");
