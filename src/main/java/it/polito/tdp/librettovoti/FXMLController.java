@@ -1,6 +1,7 @@
 package it.polito.tdp.librettovoti;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -50,7 +51,7 @@ public class FXMLController {
     	}
     	
     	//2. esecuzione dell'operazione (== chiedere al Model di farla)
-    	boolean ok = model.add(new Voto(nome, punti));
+    	boolean ok = model.add(new Voto(nome, punti, LocalDate.now()));
     	
     	//3.visualizzazione/aggiornamento del risultato
     	
@@ -76,6 +77,14 @@ public class FXMLController {
     
     public void setModel(Libretto model) {
     	this.model = model;
+    	txtVoti.setDisable(false);
+    	
+    	List<Voto> voti = model.getVoti();
+		txtVoti.clear();
+		txtVoti.appendText("Hai superato " +voti.size()+ " esami\n");
+		for(Voto v: voti) {
+			txtVoti.appendText(v.toString()+"\n");
+		}
     }
 
     @FXML

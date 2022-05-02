@@ -3,15 +3,28 @@ package it.polito.tdp.librettovoti.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polito.tdp.librettovoti.db.LibrettoDAO;
+
 public class Libretto {
 
 	private List<Voto> voti;
 	
 	public Libretto() {
-		this.voti = new ArrayList<Voto>(); //qua definisco l'interfaccia che gestisce la lista, inizialmente non conterrà nessun voto
+		//this.voti = new ArrayList<Voto>(); //qua definisco l'interfaccia che gestisce la lista, inizialmente non conterrà nessun voto
+		
 		
 	}
+	public boolean add(Voto v) {
+		LibrettoDAO dao = new LibrettoDAO();
+		boolean result = dao.creaVoto(v);
+		return result;
+	}
 	
+	public List<Voto> getVoti(){
+		LibrettoDAO dao = new LibrettoDAO();
+		return dao.readAllVoto();
+	}
+	/*
 	public boolean add(Voto v) {
 		//this.voti.add(v); //uso il metodo add della lista per aggiungere in coda un elemento della stessa classe (delego alla List l'operazione che dovrei fare io)
 	    if(!isDuplicate(v) && !isConflitto(v)) {
@@ -22,6 +35,9 @@ public class Libretto {
 	    }
 	}
 	
+	
+	 
+	 
 	//creo un metodo che restituisce un nuovo libretto filtrando sul voto
 	public Libretto filtraPunti(int punti) {
 		Libretto result = new Libretto();
@@ -33,6 +49,7 @@ public class Libretto {
 		return result;
 	}
 	
+	
 	//implemento la documentazione del metodo:
 	/**
 	 * Restituisce il punteggio ottenuto all'esame di cui
@@ -41,6 +58,7 @@ public class Libretto {
 	 * @return punteggio numerico, oppure null se l'esame non esiste
 	 */
 	
+	/*
 	public Integer puntiEsame(String nome) {
 		for(Voto v: this.voti) {
 			if(v.getNome().equals(nome)) {
@@ -69,6 +87,7 @@ public class Libretto {
 		else
 			return  false;
 	}
+	
 	
 	public List<Voto> getVoti(){
 		return this.voti;
@@ -104,6 +123,8 @@ public class Libretto {
 			}
 		}
 	}
+	
+	*/
 	
 	public String toString() {
 		return this.voti.toString(); //delego alla list il compito di stamparsi
