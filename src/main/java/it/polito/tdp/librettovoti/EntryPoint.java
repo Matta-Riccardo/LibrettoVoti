@@ -9,7 +9,11 @@ import javafx.stage.Stage;
 
 
 public class EntryPoint extends Application {
-
+	
+//	All'interno del main (entryPoint) creo la classe model e chiamo il metodo setModel del Controller affinche lui si possa ricordare e conoscere	
+//	su quale modello lavorare.
+//	Per chiamarte tale metodo devo avere nel main un riferimento alla classe controller.
+	
     @Override
     public void start(Stage stage) throws Exception {
        // Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
